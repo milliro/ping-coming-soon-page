@@ -285,8 +285,8 @@ footer {
   }
 
   footer {
-    position: absolute;
-    bottom: 10px;
+    position: relative;
+    bottom: -20px;
   }
 }
 
