@@ -1,32 +1,29 @@
 const form = document.querySelector('form')
 const inputEmail = document.querySelector('#email')
-const divInput = document.querySelector('.div-input') 
+const divInput = document.querySelector('.div-input')
 
 const submitForm = event => {
   event.preventDefault()
-  sucessful()
-  setInterval(() => {
-    divInput.classList.remove('sucess')
-  }, 3000)
+  const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+  if (regex.test(inputEmail.value)) {
+    divInput.classList.remove('error')
+    divInput.classList.add('sucess')
+    setInterval(() => {
+      divInput.classList.remove('sucess')
+    }, 3000)
+    return inputEmail.value = ''
+  }
+
+  handleError()
 }
 
 const handleError = event => {
   event.preventDefault()
-  error()
+  divInput.classList.remove('sucess')
+  divInput.classList.add('error')
   setInterval(() => {
     divInput.classList.remove('error')
   }, 3000)
-}
-
-const sucessful = () => {
-  divInput.classList.remove('error')
-  divInput.classList.add('sucess')
-  inputEmail.value = ''
-}
-
-const error = () => {
-  divInput.classList.remove('sucess')
-  divInput.classList.add('error')
   inputEmail.value = 'example@email/com'
 }
 
